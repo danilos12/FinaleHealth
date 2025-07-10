@@ -4,7 +4,7 @@
     </div>
     <nav class="flex-1 px-4 py-6 space-y-2">
         <a 
-         
+   
             (click)="navigateForm()" 
             [ngClass]="{'bg-blue-800': (sidebarState.activeLink$ | async) === 'form'}"
             class="flex items-center px-4 py-3 rounded-lg hover:bg-blue-800 transition"
@@ -12,12 +12,14 @@
             Form
         </a>
         <a
+      
         (click)="navigateList()"
          [ngClass]="{'bg-blue-800': (sidebarState.activeLink$ | async) === 'list'}"
          class="flex items-center px-4 py-3 rounded-lg hover:bg-blue-800 transition">
 
             List
         </a>
+  
     
     </nav>
     <div class="px-4 py-4 border-t border-blue-800">

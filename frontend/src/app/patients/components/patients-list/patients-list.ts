@@ -5,7 +5,7 @@ import { PatientInfo } from '../../model/patientinfo';
 import { PatientService } from '../../services/patientservice';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-
+import { SidebarState } from '../../../shared/sidebar-state';
 @Component({
   selector: 'app-patients-list',
    standalone: false,
@@ -14,11 +14,11 @@ import { Router } from '@angular/router';
 })
 export class PatientsList implements AfterViewInit {
 
-  constructor(private router: Router, private patientService: PatientService) {}
+  constructor(private sidebarState: SidebarState, private router: Router, private patientService: PatientService) {}
   activeLink = '';
   navigateToHome() {
     this.router.navigate(['/']);
-    this.activeLink = 'form';
+    this.sidebarState.setActiveLink('form');
   }
   
  
