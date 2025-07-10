@@ -22,8 +22,18 @@ export class PatientService {
       params
     });
   }
-  
 
+  updatePatient(patient: PatientInfo) {
+    return this.http.patch(`${this.url}/patients/${patient.id}`, patient);
+  }
+
+  deletePatient(id:string) {
+    console.log('Deleting patient with id:', id);
+    console.log(`${this.url}/patients/${id}`);
+    return this.http.delete(`${this.url}/patients/${id}`);
+  }
+  
+  
 
 
 

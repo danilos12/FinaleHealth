@@ -1,6 +1,7 @@
 import { Schema, model, Document } from 'mongoose';
 
 export interface Patient extends Document {
+    
     firstName: string;
     lastName: string;
     dob: Date;
