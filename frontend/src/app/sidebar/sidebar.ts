@@ -16,15 +16,15 @@ export class Sidebar {
   setActiveLink(link: string) {
     this.sidebarState.setActiveLink(link);
   }
-  navigateForm() {
-    this.router.navigate(['/']);
-    this.setActiveLink('form');
-  }
+navigateForm() {
+  this.router.navigate(['/']);
+  this.setActiveLink('form');
+}
 
-  navigateList() {
-    this.router.navigate(['/patients-list']);
-    this.setActiveLink('list');
-  }
+navigateList() {
+  this.router.navigate(['/patients-list']);
+  this.setActiveLink('list');
+}
 
 
 

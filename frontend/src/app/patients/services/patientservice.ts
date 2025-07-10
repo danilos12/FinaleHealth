@@ -12,11 +12,17 @@ export class PatientService {
     return this.http.post(`${this.url}/patients`, patient);
   }
 
-  getPatients(page: number = 1, limit: number = 10) {
+  getPatients(limit?: number) {
+    const params: any = {};
+    if ( limit !== undefined) {
+    
+      params.limit = limit;
+    }
     return this.http.get<any>(`${this.url}/patients`, {
-      params: { page, limit }
+      params
     });
   }
+  
 
 
 

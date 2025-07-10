@@ -5,7 +5,7 @@ import { PatientInfo } from '../../model/patientinfo';
 import { PatientService } from '../../services/patientservice';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-
+import { SidebarState } from '../../../shared/sidebar-state';
 @Component({
   selector: 'app-patients-list',
    standalone: false,
@@ -14,13 +14,17 @@ import { Router } from '@angular/router';
 })
 export class PatientsList implements AfterViewInit {
 
-  constructor(private router: Router, private patientService: PatientService) {}
+  constructor(private sidebarState: SidebarState, private router: Router, private patientService: PatientService) {}
   activeLink = '';
   navigateToHome() {
     this.router.navigate(['/']);
-    this.activeLink = 'form';
+    this.sidebarState.setActiveLink('form');
   }
-  
+   pageEvent: PageEvent = {
+    pageIndex: 0,
+    pageSize: 5,
+    length: 0
+  };
  
   patients: PatientInfo[] = [];
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'address', 'dob', 'action'];
@@ -31,17 +35,21 @@ export class PatientsList implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.loadPatients();
   }
-
+  onPageChange(event: PageEvent) {
+    this.pageEvent = event;
+    this.loadPatients();
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-
-    isLoading = false;
+ 
+    
+    isLoading = true;
     loadPatients() {
-    this.patientService.getPatients().subscribe((result: any) => {
+  
+      this.patientService.getPatients(this.pageEvent.pageIndex).subscribe((result: any) => {
       this.patients = result.data.map((p: any) => ({
         id: p._id,
         firstName: p.firstName ?? '',
