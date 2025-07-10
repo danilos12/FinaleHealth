@@ -1,0 +1,26 @@
+<aside class="h-screen w-64 bg-gradient-to-b from-blue-700 to-blue-900 text-white flex flex-col shadow-lg fixed left-0">
+    <div class="flex items-center justify-center h-20 border-b border-blue-800">
+        <span class="text-2xl font-bold tracking-wide">finalehealth</span>
+    </div>
+    <nav class="flex-1 px-4 py-6 space-y-2">
+        <a 
+         
+            (click)="navigateForm()" 
+            [ngClass]="{'bg-blue-800': (sidebarState.activeLink$ | async) === 'form'}"
+            class="flex items-center px-4 py-3 rounded-lg hover:bg-blue-800 transition"
+        >
+            Form
+        </a>
+        <a
+        (click)="navigateList()"
+         [ngClass]="{'bg-blue-800': (sidebarState.activeLink$ | async) === 'list'}"
+         class="flex items-center px-4 py-3 rounded-lg hover:bg-blue-800 transition">
+
+            List
+        </a>
+    
+    </nav>
+    <div class="px-4 py-4 border-t border-blue-800">
+        <span class="text-sm text-blue-200">© 2024 HealthApp</span>
+    </div>
+</aside>

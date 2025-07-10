@@ -1,0 +1,63 @@
+  <div class="flex justify-end mb-4">
+       <button  (click)="navigateToHome()" class="p-12 mb-2 mr-12 bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition-colors">Add Patient</button>
+   <input
+    type="text"
+    placeholder="Search patients..."
+    class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    (input)="applyFilter($event)"
+  />
+      </div>
+ 
+<div class="w-[70vw] rounded-lg border h-[50%] flex flex-col justify-center items-center ">
+
+  <div class="w-full max-h-80 overflow-y-auto">
+    <div *ngIf="isLoading" class="flex items-center justify-center w-full h-40">
+      <mat-spinner></mat-spinner>
+    </div>
+  
+    <table *ngIf="!isLoading" mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full h-auto">
+      <!-- ...columns as before... -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="dob">
+        <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
+        <td mat-cell *matCellDef="let element"> {{element.dob}} </td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+      <ng-container matColumnDef="address">
+        <th  mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+      </ng-container>
+      <ng-container matColumnDef="action" >
+        <th mat-header-cell *matHeaderCellDef class="flex items-center h-[60px]  justify-center"> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <button id="view-summary-{{element.id}}"  class="w-full mb-2 bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition-colors">View Summary</button>
+         
+          <button id="edit-{{element.id}}" class="w-full mb-2 bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition-colors">Edit</button>
+          <button id="delete-{{element.id}}" class="w-full mb-2 bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition-colors">Delete</button>
+        </td>
+      </ng-container>
+      <tr class="h-[5vh] bg-red-500" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div class="w-full flex justify-end rounded-lg">
+    <mat-paginator [pageSizeOptions]="[5, 10, 15]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>

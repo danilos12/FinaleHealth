@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  @include mat.table-overrides((
+
+header-headline-color: black,
+header-headline-weight: 600, 
+   
+  ));
+}
+
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  min-height: 100vh;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
