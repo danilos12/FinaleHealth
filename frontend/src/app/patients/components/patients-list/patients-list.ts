@@ -20,7 +20,11 @@ export class PatientsList implements AfterViewInit {
     this.router.navigate(['/']);
     this.sidebarState.setActiveLink('form');
   }
-  
+   pageEvent: PageEvent = {
+    pageIndex: 0,
+    pageSize: 5,
+    length: 0
+  };
  
   patients: PatientInfo[] = [];
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'address', 'dob', 'action'];
@@ -31,17 +35,21 @@ export class PatientsList implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.loadPatients();
   }
-
+  onPageChange(event: PageEvent) {
+    this.pageEvent = event;
+    this.loadPatients();
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-
-    isLoading = false;
+ 
+    
+    isLoading = true;
     loadPatients() {
-    this.patientService.getPatients().subscribe((result: any) => {
+  
+      this.patientService.getPatients(this.pageEvent.pageIndex).subscribe((result: any) => {
       this.patients = result.data.map((p: any) => ({
         id: p._id,
         firstName: p.firstName ?? '',

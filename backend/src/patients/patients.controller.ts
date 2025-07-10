@@ -14,8 +14,8 @@ export class PatientsController {
   }
 
   @Get()
-  findAll(@Query('page') page = 1, @Query('limit') limit = 10) {
-    return this.patientsService.findAll({ page, limit });
+  findAll(@Query('limit') limit = 10) {
+    return this.patientsService.findAll({ limit });
   }
 
   @Get(':id')
