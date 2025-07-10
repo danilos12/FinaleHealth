@@ -13,7 +13,14 @@ header-headline-weight: 600,
    
   ));
 }
+.swal2-confirm {
 
+  background-color: #2563eb !important; /* blue */
+}
+
+.swal2-cancel {
+  background-color: red !important; /* red */
+}
 
 html, body {
   height: 100%;

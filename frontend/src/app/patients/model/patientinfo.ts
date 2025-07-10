@@ -1,11 +1,10 @@
-
 export interface PatientInfo {
-  id?: string; // Optional for new patients
-  _id?: string; // Optional for existing patients
+  id?: string; // <-- make optional
+  _id?: string;
   firstName: string;
   lastName: string;
   dob: Date;
   email: string;
-  phoneNumber: number; 
+  phoneNumber: number;
   address: string;
 }

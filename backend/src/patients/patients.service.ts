@@ -28,16 +28,17 @@ async findAll({ limit }: { limit: number }): Promise<any> {
     return "Patients ById: "+byId;
   }
 
-  update(id: string, updatePatientDto: UpdatePatientDto) {
-    const updatedPatient = this.patientModel.findByIdAndUpdate(
+ async update(id: string, updatePatientDto: UpdatePatientDto) {
+    const updatedPatient = await this.patientModel.findByIdAndUpdate(
       id,
       updatePatientDto,
       { new: true }
     ).exec();
-    return "Information has been successfully updated";
+    return {message: "Information has been successfully updated"};
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} patient`;
+  remove(id: string) {
+    this.patientModel.findByIdAndDelete(id).exec();
+    return {message: "Patient has been successfully deleted"};
   }
 }
